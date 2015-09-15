@@ -1,0 +1,36 @@
+{
+  "name": "center-code",
+  "version": "1.0.0",
+  "description": "Shows the file's source centered in the terminal",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "center": "./bin/center-code.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bahmutov/center-code.git"
+  },
+  "keywords": [
+    "center",
+    "code",
+    "command",
+    "line",
+    "cli",
+    "demo",
+    "term",
+    "terminal",
+    "source"
+  ],
+  "author": "Gleb Bahmutov <gleb.bahmutov@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bahmutov/center-code/issues"
+  },
+  "homepage": "https://github.com/bahmutov/center-code#readme",
+  "dependencies": {
+    "debug": "2.2.0"
+  }
+}
