@@ -4,6 +4,14 @@
 
     npm install -g center-code
 
+For any file
+
+    center <filename>
+
+The file's contents will be centered in the terminal, which is great for demos and live coding.
+
+![center-code](images/center-code.png)
+
 ### Small print
 
 Author: Gleb Bahmutov &copy; 2015
