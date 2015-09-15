@@ -4,7 +4,8 @@
   "description": "Shows the file's source centered in the terminal",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "example": "node index.js example/small.js"
   },
   "bin": {
     "center": "./bin/center-code.js"
@@ -32,5 +33,12 @@
   "homepage": "https://github.com/bahmutov/center-code#readme",
   "dependencies": {
     "debug": "2.2.0"
-  }
+  },
+  "devDependencies": {
+    "pre-git": "0.6.2"
+  },
+  "pre-commit": [
+    "npm run example",
+    "npm version"
+  ]
 }
