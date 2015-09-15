@@ -70,9 +70,9 @@ function centerCode(options) {
     rows: lines.length
   };
   log('source size %d x %d', sourceSize.columns, sourceSize.rows);
-  var paddedVertically = padVertically(size, sourceSize, lines);
-  var paddedHorizontally = padHorizontally(size, sourceSize, paddedVertically);
-  process.stdout.write(paddedHorizontally);
+  var paddedHorizontally = padHorizontally(size, sourceSize, source);
+  var paddedVertically = padVertically(size, sourceSize, paddedHorizontally.split('\n'));
+  process.stdout.write(paddedVertically);
 }
 
 module.exports = centerCode;
