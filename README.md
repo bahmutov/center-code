@@ -12,6 +12,12 @@ The file's contents will be centered in the terminal, which is great for demos a
 
 ![center-code](images/center-code.png)
 
+[![center-code-icon] [center-code-icon]][center-code-icon]
+
+[![Build status][center-code-ci-image] ][center-code-ci-url]
+[![dependencies][center-code-dependencies-image] ][center-code-dependencies-url]
+[![devdependencies][center-code-devdependencies-image] ][center-code-devdependencies-url]
+
 ### Small print
 
 Author: Gleb Bahmutov &copy; 2015
@@ -51,3 +57,12 @@ HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
 WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
+
+[center-code-icon]: https://nodei.co/npm/center-code.png?downloads=true
+[center-code-url]: https://npmjs.org/package/center-code
+[center-code-ci-image]: https://travis-ci.org/bahmutov/center-code.svg?branch=master
+[center-code-ci-url]: https://travis-ci.org/bahmutov/center-code
+[center-code-dependencies-image]: https://david-dm.org/bahmutov/center-code.svg
+[center-code-dependencies-url]: https://david-dm.org/bahmutov/center-code
+[center-code-devdependencies-image]: https://david-dm.org/bahmutov/center-code/dev-status.svg
+[center-code-devdependencies-url]: https://david-dm.org/bahmutov/center-code#info=devDependencies

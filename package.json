@@ -4,7 +4,7 @@
   "description": "Shows the file's source centered in the terminal",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha spec/*-spec.js",
     "example": "node index.js example/small.js"
   },
   "bin": {
@@ -35,9 +35,12 @@
     "debug": "2.2.0"
   },
   "devDependencies": {
+    "describe-it": "1.4.0",
+    "mocha": "2.3.2",
     "pre-git": "0.6.2"
   },
   "pre-commit": [
+    "npm test",
     "npm run example",
     "npm version"
   ]
