@@ -1,11 +1,12 @@
 {
   "name": "center-code",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Shows the file's source centered in the terminal",
   "main": "index.js",
   "scripts": {
     "test": "mocha spec/*-spec.js",
     "example": "node index.js example/small.js",
+    "cat": "cat example/small.js | node bin/center-code.js",
     "modules-used": "modules-used > modules-used.md"
   },
   "bin": {
@@ -34,7 +35,8 @@
   "homepage": "https://github.com/bahmutov/center-code#readme",
   "dependencies": {
     "cardinal": "0.5.0",
-    "debug": "2.2.0"
+    "debug": "2.2.0",
+    "get-stdin-promise": "0.1.1"
   },
   "devDependencies": {
     "describe-it": "1.4.0",

@@ -7,13 +7,15 @@
 For any file
 
     center <filename>
+    // or read from STDIN
+    cat <filename> | center
 
 The file's contents will be centered in the terminal, which is great for demos and live coding.
 
 ![center-code](images/center-code.png)
 
 If the file is a JavaScript (with extension `.js`) or a Json file (with extension `.json`),
-the output will have syntax highlighting.
+the output will have syntax highlighting. The input read from STDIN is not syntax highlighted.
 
 [![center-code-icon] [center-code-icon]][center-code-icon]
 

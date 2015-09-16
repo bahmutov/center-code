@@ -99,9 +99,9 @@ function grabInput(options) {
     return toPromise(getSource(options.filename));
   }
 
-  return new Promise(function (resolve) {
-    log('reading input from STDIN');
-  });
+  log('reading input from STDIN');
+  var stdin = require('get-stdin-promise');
+  return stdin;
 }
 
 function centerCode(options) {
