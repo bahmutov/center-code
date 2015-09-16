@@ -21,6 +21,12 @@ function getSource(filename) {
   return read(filename, 'utf-8');
 }
 
+function toPromise(value) {
+  return new Promise(function (resolve) {
+    resolve(value);
+  });
+}
+
 function widest(lines) {
   return lines.reduce(function (columns, line) {
     return columns > line.length ? columns : line.length;
@@ -65,13 +71,9 @@ function padHorizontally(terminal, sourceSize, source) {
   return padded.join('\n');
 }
 
-function centerCode(options) {
-  options = options || {};
-  options.filename = options.filename || options.name;
-  log('showing in the center %s', options.filename);
+function centerText(options, source) {
   var size = terminalSize();
   log('terminal %d x %d', size.width, size.height);
-  var source = getSource(options.filename);
   var lines = source.split('\n');
   var columns = widest(lines);
   var sourceSize = {
@@ -89,6 +91,27 @@ function centerCode(options) {
     highlighted = cardinal.highlight(paddedVertically, { json: true });
   }
   console.log(highlighted);
+}
+
+function grabInput(options) {
+  if (options.filename) {
+    log('showing in the center %s', options.filename);
+    return toPromise(getSource(options.filename));
+  }
+
+  return new Promise(function (resolve) {
+    log('reading input from STDIN');
+  });
+}
+
+function centerCode(options) {
+  options = options || {};
+  options.filename = options.filename || options.name;
+
+  grabInput(options)
+    .then(function (source) {
+      centerText(options, source);
+    });
 }
 
 module.exports = centerCode;
