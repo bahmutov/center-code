@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha spec/*-spec.js",
-    "example": "node index.js example/small.js"
+    "example": "node index.js example/small.js",
+    "modules-used": "modules-used > modules-used.md"
   },
   "bin": {
     "center": "./bin/center-code.js"
@@ -38,12 +39,13 @@
   "devDependencies": {
     "describe-it": "1.4.0",
     "mocha": "2.3.2",
-    "modules-used": "1.0.2",
+    "modules-used": "1.1.0",
     "pre-git": "0.6.2"
   },
   "pre-commit": [
     "npm test",
     "npm run example",
+    "npm run modules-used",
     "npm version"
   ]
 }
