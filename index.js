@@ -1,10 +1,15 @@
 var log = require('debug')('center');
+var cardinal = require('cardinal');
 
 function terminalSize() {
   return {
     width: process.stdout.columns,
     height: process.stdout.rows
   };
+}
+
+function isJavaScript(filename) {
+  return /\.js$/.test(filename);
 }
 
 function getSource(filename) {
@@ -72,7 +77,12 @@ function centerCode(options) {
   log('source size %d x %d', sourceSize.columns, sourceSize.rows);
   var paddedHorizontally = padHorizontally(size, sourceSize, source);
   var paddedVertically = padVertically(size, sourceSize, paddedHorizontally.split('\n'));
-  process.stdout.write(paddedVertically);
+
+  var highlighted = paddedVertically;
+  if (isJavaScript(options.filename)) {
+    highlighted = cardinal.highlight(paddedVertically);
+  }
+  console.log(highlighted);
 }
 
 module.exports = centerCode;
