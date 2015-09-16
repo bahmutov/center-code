@@ -12,6 +12,10 @@ function isJavaScript(filename) {
   return /\.js$/.test(filename);
 }
 
+function isJson(filename) {
+  return /\.json$/.test(filename);
+}
+
 function getSource(filename) {
   var read = require('fs').readFileSync;
   return read(filename, 'utf-8');
@@ -81,6 +85,8 @@ function centerCode(options) {
   var highlighted = paddedVertically;
   if (isJavaScript(options.filename)) {
     highlighted = cardinal.highlight(paddedVertically);
+  } else if (isJson(options.filename)) {
+    highlighted = cardinal.highlight(paddedVertically, { json: true });
   }
   console.log(highlighted);
 }

@@ -12,6 +12,9 @@ The file's contents will be centered in the terminal, which is great for demos a
 
 ![center-code](images/center-code.png)
 
+If the file is a JavaScript (with extension `.js`) or a Json file (with extension `.json`),
+the output will have syntax highlighting.
+
 [![center-code-icon] [center-code-icon]][center-code-icon]
 
 [![Build status][center-code-ci-image] ][center-code-ci-url]
