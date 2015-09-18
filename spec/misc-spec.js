@@ -1,6 +1,7 @@
 var describeIt = require('describe-it');
+var index = __dirname + '/../index.js';
 
-describeIt(__dirname + '/../index.js', 'widest(lines)', function (extract) {
+describeIt(index, 'widest(lines)', function (extract) {
   var widest;
   before(function () {
     widest = extract();
@@ -12,7 +13,7 @@ describeIt(__dirname + '/../index.js', 'widest(lines)', function (extract) {
   });
 });
 
-describeIt(__dirname + '/../index.js', 'blanks(n)', function (extract) {
+describeIt(index, 'blanks(n)', function (extract) {
   var blanks;
   before(function () {
     blanks = extract();
