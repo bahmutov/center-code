@@ -1,4 +1,5 @@
 require('lazy-ass');
+var R = require('ramda');
 var IO = require('./io');
 la(typeof IO === 'function', 'IO should be a function', IO);
 
@@ -36,5 +37,43 @@ describe('IO', function () {
     // start the computation. Now unsafeGlobalAccess runs
     monad.unsafePerformIO();
   });
+});
 
+describe('terminal size', function () {
+  'use strict';
+
+  function getProcess() {
+    return process;
+  }
+
+  function terminalSize() {
+    return new IO(getProcess)
+      .map(R.prop('stdout'))
+      .map(function (outputStream) {
+        return {
+          width: outputStream.columns,
+          height: outputStream.rows
+        };
+      });
+  }
+
+  it('works with a monad', function () {
+    var verified; // to make sure monad chain ran
+
+    // check the returned size
+    var monad = terminalSize()
+      .map(function (size) {
+        la(size.width === 42);
+        la(size.height === 20);
+        verified = true;
+      });
+    // nothing ran yet. Time to prepare the environment!
+    process.stdout.columns = 42;
+    process.stdout.rows = 20;
+
+    // now start the monad execution
+    monad.unsafePerformIO();
+
+    la(verified, 'monad executed');
+  });
 });

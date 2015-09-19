@@ -25,14 +25,31 @@ describeIt(index, 'blanks(n)', function (extract) {
   });
 });
 
-describeIt(index, 'terminalSize(outputStream)', function (extract) {
+describeIt(index, 'terminalSize()', function (extract) {
   var terminalSize;
 
   before(function () {
     terminalSize = extract();
   });
 
-  it('works under Node', function () {
+  it('works with a monad', function () {
+    var verified; // to make sure monad chain ran
+
+    var monad = terminalSize()
+      .map(function checkTerminal(size) {
+        la(size.width === 42);
+        la(size.height === 20);
+        verified = true;
+      });
+    // nothing ran yet. Time to prepare the environment!
+    process.stdout.columns = 42;
+    process.stdout.rows = 20;
+    // now start the monad execution
+    monad.unsafePerformIO();
+    la(verified, 'monad executed');
+  });
+
+  xit('works under Node', function () {
     var fakeTerminal = {
       columns: 20,
       rows: 10

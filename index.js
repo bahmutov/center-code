@@ -1,19 +1,23 @@
 var log = require('debug')('center');
 var cardinal = require('cardinal');
+var R = require('ramda');
 
 function isNumber(x) {
   return typeof x === 'number';
 }
 
-function terminalSize(outputStream) {
-  if (outputStream &&
-    isNumber(outputStream.columns) &&
-    isNumber(outputStream.rows)) {
-    return {
-      width: outputStream.columns,
-      height: outputStream.rows
-    };
-  }
+function getProcess() { return process; }
+
+function terminalSize() {
+  var IO = require('./src/io');
+  return new IO(getProcess)
+    .map(R.prop('stdout'))
+    .map(function (outputStream) {
+      return {
+        width: outputStream.columns,
+        height: outputStream.rows
+      };
+    });
 }
 
 function isJavaScript(filename) {
@@ -103,17 +107,22 @@ function highlight(filename, text) {
 }
 
 function centerText(options, source) {
-  var size = terminalSize(process.stdout);
-  log('terminal %d x %d', size.width, size.height);
+  var monad = terminalSize()
+    .map(function (size) {
+      log('terminal %d x %d', size.width, size.height);
 
-  var sourceSize = textSize(source);
-  log('source size %d x %d', sourceSize.columns, sourceSize.rows);
+      var sourceSize = textSize(source);
+      log('source size %d x %d', sourceSize.columns, sourceSize.rows);
 
-  var paddedHorizontally = padHorizontally(size, source);
-  var paddedVertically = padVertically(size, paddedHorizontally);
+      var paddedHorizontally = padHorizontally(size, source);
+      var paddedVertically = padVertically(size, paddedHorizontally);
 
-  var highlighted = highlight(options.filename, paddedVertically);
-  console.log(highlighted);
+      var highlighted = highlight(options.filename, paddedVertically);
+      console.log(highlighted);
+    });
+  // nothing has happened yet - no functions executed, just composed
+  // now run them (including unsafe ones)
+  monad.unsafePerformIO();
 }
 
 function grabInput(options) {
