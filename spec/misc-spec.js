@@ -24,3 +24,22 @@ describeIt(index, 'blanks(n)', function (extract) {
     la(str === '     ');
   });
 });
+
+describeIt(index, 'terminalSize(outputStream)', function (extract) {
+  var terminalSize;
+
+  before(function () {
+    terminalSize = extract();
+  });
+
+  it('works under Node', function () {
+    var fakeTerminal = {
+      columns: 20,
+      rows: 10
+    };
+    var resolution = terminalSize(fakeTerminal);
+    la(resolution, 'got resolution object', resolution);
+    la(typeof resolution.width === 'number', 'has width', resolution);
+    la(typeof resolution.height === 'number', 'has height', resolution);
+  });
+});

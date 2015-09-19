@@ -1,11 +1,19 @@
 var log = require('debug')('center');
 var cardinal = require('cardinal');
 
-function terminalSize() {
-  return {
-    width: process.stdout.columns,
-    height: process.stdout.rows
-  };
+function isNumber(x) {
+  return typeof x === 'number';
+}
+
+function terminalSize(outputStream) {
+  if (outputStream &&
+    isNumber(outputStream.columns) &&
+    isNumber(outputStream.rows)) {
+    return {
+      width: outputStream.columns,
+      height: outputStream.rows
+    };
+  }
 }
 
 function isJavaScript(filename) {
@@ -72,7 +80,7 @@ function padHorizontally(terminal, sourceSize, source) {
 }
 
 function centerText(options, source) {
-  var size = terminalSize();
+  var size = terminalSize(process.stdout);
   log('terminal %d x %d', size.width, size.height);
   var lines = source.split('\n');
   var columns = widest(lines);
