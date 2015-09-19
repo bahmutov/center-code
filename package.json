@@ -4,7 +4,7 @@
   "description": "Shows the file's source centered in the terminal",
   "main": "index.js",
   "scripts": {
-    "test": "mocha spec/*-spec.js",
+    "test": "mocha src/*-spec.js spec/*-spec.js",
     "example": "node index.js example/small.js",
     "cat": "cat example/small.js | node bin/center-code.js",
     "modules-used": "modules-used > modules-used.md"
@@ -36,10 +36,12 @@
   "dependencies": {
     "cardinal": "0.5.0",
     "debug": "2.2.0",
-    "get-stdin-promise": "0.1.1"
+    "get-stdin-promise": "0.1.1",
+    "lodash.compose": "2.4.1"
   },
   "devDependencies": {
     "describe-it": "1.4.0",
+    "lazy-ass": "0.6.0",
     "mocha": "2.3.2",
     "modules-used": "1.1.0",
     "pre-git": "0.6.2"
