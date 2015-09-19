@@ -39,7 +39,7 @@ describeIt(index, 'terminalSize(outputStream)', function (extract) {
     };
     var resolution = terminalSize(fakeTerminal);
     la(resolution, 'got resolution object', resolution);
-    la(typeof resolution.width === 'number', 'has width', resolution);
-    la(typeof resolution.height === 'number', 'has height', resolution);
+    la(resolution.width === fakeTerminal.columns, 'has width', resolution);
+    la(resolution.height === fakeTerminal.rows, 'has height', resolution);
   });
 });
