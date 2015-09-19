@@ -1,30 +1,34 @@
-var IO = require('./io');
 require('lazy-ass');
+var IO = require('./io');
+la(typeof IO === 'function', 'IO should be a function', IO);
 
 describe('IO', function () {
-  var io_global;
-
-  beforeEach(function () {
-    la(typeof IO === 'function');
-    io_global = new IO(function(){ return global; });
-  });
+  var ioGlobal = new IO(function(){ return global; });
 
   it('holds an unsafe function', function () {
-    la(typeof io_global === 'object', 'created io monad to access global');
+    la(typeof ioGlobal === 'object', 'created io monad to access global');
   });
 
   it('can be mapped', function () {
-    la(typeof io_global.map === 'function');
+    la(typeof ioGlobal.map === 'function');
   });
 
-  it('wraps global access', function () {
+  it('wraps global access', function (done) {
     function getArguments(glob) {
-      console.log('returning arguments, global', global);
       return glob.process.argv;
     }
-    io_global.map(getArguments).map(function (args) {
+
+    function checkArgs(args) {
       la(Array.isArray(args), 'arguments is a list', args);
-    });
+    }
+
+    var monad = ioGlobal
+      .map(getArguments)
+      .map(checkArgs)
+      .map(done);
+
+    // start the computation
+    monad.unsafePerformIO();
   });
 
 });
