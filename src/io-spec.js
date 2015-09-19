@@ -3,7 +3,9 @@ var IO = require('./io');
 la(typeof IO === 'function', 'IO should be a function', IO);
 
 describe('IO', function () {
-  var ioGlobal = new IO(function(){ return global; });
+  var ioGlobal = new IO(function unsafeGlobalAccess() {
+    return global;
+  });
 
   it('holds an unsafe function', function () {
     la(typeof ioGlobal === 'object', 'created io monad to access global');
@@ -14,6 +16,7 @@ describe('IO', function () {
   });
 
   it('wraps global access', function (done) {
+    // everything is pure until last line of this test
     function getArguments(glob) {
       return glob.process.argv;
     }
@@ -22,12 +25,15 @@ describe('IO', function () {
       la(Array.isArray(args), 'arguments is a list', args);
     }
 
+    // create a chain of functions
+    // BUT nothing is called yet. Including the "dirty"
+    // function unsafeGlobalAccess that returns the global state
     var monad = ioGlobal
       .map(getArguments)
       .map(checkArgs)
       .map(done);
 
-    // start the computation
+    // start the computation. Now unsafeGlobalAccess runs
     monad.unsafePerformIO();
   });
 

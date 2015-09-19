@@ -41,9 +41,10 @@ function widest(lines) {
   }, 0);
 }
 
-function padVertically(terminal, sourceSize, text) {
+function padVertically(terminal, text) {
   var sourceLines = text.split('\n');
-  var blankLines = Math.floor((terminal.height - sourceSize.rows) / 2);
+  var rows = sourceLines.length;
+  var blankLines = Math.floor((terminal.height - rows) / 2);
   if (blankLines < 1) {
     blankLines = 0;
   }
@@ -68,8 +69,10 @@ function blanks(n) {
   return space;
 }
 
-function padHorizontally(terminal, sourceSize, source) {
-  var lines = source.split('\n');
+function padHorizontally(terminal, text) {
+  var sourceSize = textSize(text);
+
+  var lines = text.split('\n');
   var blankColumns = Math.floor((terminal.width - sourceSize.columns) / 2);
   var blankPrefix = blanks(blankColumns);
   log('blank prefix "%s"', blankPrefix)
@@ -106,8 +109,8 @@ function centerText(options, source) {
   var sourceSize = textSize(source);
   log('source size %d x %d', sourceSize.columns, sourceSize.rows);
 
-  var paddedHorizontally = padHorizontally(size, sourceSize, source);
-  var paddedVertically = padVertically(size, sourceSize, paddedHorizontally);
+  var paddedHorizontally = padHorizontally(size, source);
+  var paddedVertically = padVertically(size, paddedHorizontally);
 
   var highlighted = highlight(options.filename, paddedVertically);
   console.log(highlighted);
