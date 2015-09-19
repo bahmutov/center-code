@@ -79,16 +79,22 @@ function padHorizontally(terminal, sourceSize, source) {
   return padded.join('\n');
 }
 
-function centerText(options, source) {
-  var size = terminalSize(process.stdout);
-  log('terminal %d x %d', size.width, size.height);
-  var lines = source.split('\n');
+function textSize(text) {
+  var lines = text.split('\n');
   var columns = widest(lines);
-  var sourceSize = {
+  return {
     columns: columns,
     rows: lines.length
   };
+}
+
+function centerText(options, source) {
+  var size = terminalSize(process.stdout);
+  log('terminal %d x %d', size.width, size.height);
+
+  var sourceSize = textSize(source);
   log('source size %d x %d', sourceSize.columns, sourceSize.rows);
+
   var paddedHorizontally = padHorizontally(size, sourceSize, source);
   var paddedVertically = padVertically(size, sourceSize, paddedHorizontally.split('\n'));
 
