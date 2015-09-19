@@ -41,7 +41,8 @@ function widest(lines) {
   }, 0);
 }
 
-function padVertically(terminal, sourceSize, sourceLines) {
+function padVertically(terminal, sourceSize, text) {
+  var sourceLines = text.split('\n');
   var blankLines = Math.floor((terminal.height - sourceSize.rows) / 2);
   if (blankLines < 1) {
     blankLines = 0;
@@ -88,6 +89,16 @@ function textSize(text) {
   };
 }
 
+function highlight(filename, text) {
+  var highlighted = text;
+  if (isJavaScript(filename)) {
+    highlighted = cardinal.highlight(text);
+  } else if (isJson(filename)) {
+    highlighted = cardinal.highlight(text, { json: true });
+  }
+  return highlighted;
+}
+
 function centerText(options, source) {
   var size = terminalSize(process.stdout);
   log('terminal %d x %d', size.width, size.height);
@@ -96,14 +107,9 @@ function centerText(options, source) {
   log('source size %d x %d', sourceSize.columns, sourceSize.rows);
 
   var paddedHorizontally = padHorizontally(size, sourceSize, source);
-  var paddedVertically = padVertically(size, sourceSize, paddedHorizontally.split('\n'));
+  var paddedVertically = padVertically(size, sourceSize, paddedHorizontally);
 
-  var highlighted = paddedVertically;
-  if (isJavaScript(options.filename)) {
-    highlighted = cardinal.highlight(paddedVertically);
-  } else if (isJson(options.filename)) {
-    highlighted = cardinal.highlight(paddedVertically, { json: true });
-  }
+  var highlighted = highlight(options.filename, paddedVertically);
   console.log(highlighted);
 }
 
