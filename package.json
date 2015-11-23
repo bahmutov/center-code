@@ -67,7 +67,10 @@
         "npm run modules-used",
         "npm version"
       ],
-      "pre-push": [],
+      "pre-push": [
+        "npm run size",
+        "npm run pkgfiles"
+      ],
       "post-commit": [],
       "post-merge": []
     }
