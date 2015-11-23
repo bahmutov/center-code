@@ -1,6 +1,6 @@
 {
   "name": "center-code",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Shows the file's source centered in the terminal",
   "main": "index.js",
   "scripts": {

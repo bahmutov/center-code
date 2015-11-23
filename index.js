@@ -144,7 +144,7 @@ function centerCode(options) {
   grabInput(options)
     .then(function (source) {
       centerText(options, source);
-    });
+    }).catch(console.error.bind(console));
 }
 
 module.exports = centerCode;
