@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha src/*-spec.js spec/*-spec.js",
-    "example": "node index.js example/small.js",
-    "shebang": "node index.js example/small-with-shebang.js",
+    "example": "./bin/center-code.js example/small.js",
+    "shebang": "./bin/center-code.js example/small-with-shebang.js",
     "cat": "cat example/small.js | node bin/center-code.js",
     "modules-used": "modules-used > modules-used.md",
     "issues": "git-issues",

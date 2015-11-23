@@ -150,6 +150,7 @@ function centerCode(options) {
 module.exports = centerCode;
 
 if (!module.parent) {
+  console.log('running directly');
   centerCode({
     filename: __dirname + '/example/small.js'
   });
