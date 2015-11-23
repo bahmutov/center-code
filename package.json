@@ -1,6 +1,6 @@
 {
   "name": "center-code",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Shows the file's source centered in the terminal",
   "main": "index.js",
   "scripts": {
@@ -55,7 +55,8 @@
   },
   "files": [
     "bin",
-    "index.js"
+    "index.js",
+    "src/io.js"
   ],
   "config": {
     "pre-git": {
