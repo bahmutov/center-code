@@ -72,7 +72,9 @@
         "npm run size",
         "npm run pkgfiles"
       ],
-      "post-commit": [],
+      "post-commit": [
+        "npm version"
+      ],
       "post-merge": []
     }
   }
