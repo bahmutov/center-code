@@ -7,7 +7,11 @@
     "test": "mocha src/*-spec.js spec/*-spec.js",
     "example": "node index.js example/small.js",
     "cat": "cat example/small.js | node bin/center-code.js",
-    "modules-used": "modules-used > modules-used.md"
+    "modules-used": "modules-used > modules-used.md",
+    "issues": "git-issues",
+    "commit": "git-issues && commit-wizard",
+    "pkgfiles": "pkgfiles",
+    "size": "tarball=\"$(npm pack .)\"; wc -c \"${tarball}\"; tar tvf \"${tarball}\"; rm \"${tarball}\";"
   },
   "bin": {
     "center": "./bin/center-code.js"
@@ -41,15 +45,29 @@
   },
   "devDependencies": {
     "describe-it": "1.4.0",
+    "git-issues": "1.2.0",
     "lazy-ass": "0.6.0",
     "mocha": "2.3.2",
     "modules-used": "1.1.0",
-    "pre-git": "0.6.2"
+    "pkgfiles": "2.3.0",
+    "pre-git": "1.3.1"
   },
-  "pre-commit": [
-    "npm test",
-    "npm run example",
-    "npm run modules-used",
-    "npm version"
-  ]
+  "files": [
+    "bin",
+    "index.js"
+  ],
+  "config": {
+    "pre-git": {
+      "commit-msg": "validate-commit-msg",
+      "pre-commit": [
+        "npm test",
+        "npm run example",
+        "npm run modules-used",
+        "npm version"
+      ],
+      "pre-push": [],
+      "post-commit": [],
+      "post-merge": []
+    }
+  }
 }
