@@ -1,11 +1,12 @@
 {
   "name": "center-code",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Shows the file's source centered in the terminal",
   "main": "index.js",
   "scripts": {
     "test": "mocha src/*-spec.js spec/*-spec.js",
     "example": "node index.js example/small.js",
+    "shebang": "node index.js example/small-with-shebang.js",
     "cat": "cat example/small.js | node bin/center-code.js",
     "modules-used": "modules-used > modules-used.md",
     "issues": "git-issues",
@@ -62,6 +63,7 @@
       "pre-commit": [
         "npm test",
         "npm run example",
+        "npm run shebang",
         "npm run modules-used",
         "npm version"
       ],

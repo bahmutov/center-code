@@ -99,6 +99,7 @@ function textSize(text) {
 function highlight(filename, text) {
   var highlighted = text;
   if (isJavaScript(filename)) {
+    log('highlighting javascript file', filename);
     highlighted = cardinal.highlight(text);
   } else if (isJson(filename)) {
     highlighted = cardinal.highlight(text, { json: true });
