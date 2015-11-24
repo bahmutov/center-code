@@ -1,6 +1,8 @@
 var log = require('debug')('center');
 var cardinal = require('cardinal');
 var R = require('ramda');
+var la = require('lazy-ass');
+var check = require('check-more-types');
 
 function isNumber(x) {
   return typeof x === 'number';
@@ -73,11 +75,14 @@ function blanks(n) {
   return space;
 }
 
-function padHorizontally(terminal, text) {
-  var sourceSize = textSize(text);
+function padHorizontally(terminal, text, columns) {
+  if (check.not.number(columns)) {
+    columns = textSize(text).columns;
+  }
+  la(check.number(columns), 'missing number of columns', text);
 
   var lines = text.split('\n');
-  var blankColumns = Math.floor((terminal.width - sourceSize.columns) / 2);
+  var blankColumns = Math.floor((terminal.width - columns) / 2);
   var blankPrefix = blanks(blankColumns);
   log('blank prefix "%s"', blankPrefix)
   var padded = lines.map(function (line) {
@@ -97,11 +102,14 @@ function textSize(text) {
 }
 
 function highlight(filename, text) {
+  la(check.unemptyString(text), 'missing text to highlight');
+
   var highlighted = text;
   if (isJavaScript(filename)) {
     log('highlighting javascript file', filename);
     highlighted = cardinal.highlight(text);
   } else if (isJson(filename)) {
+    log('highlighting json file', filename);
     highlighted = cardinal.highlight(text, { json: true });
   }
   return highlighted;
@@ -115,11 +123,11 @@ function centerText(options, source) {
       var sourceSize = textSize(source);
       log('source size %d x %d', sourceSize.columns, sourceSize.rows);
 
-      var paddedHorizontally = padHorizontally(size, source);
-      var paddedVertically = padVertically(size, paddedHorizontally);
+      var highlighted = highlight(options.filename, source);
 
-      var highlighted = highlight(options.filename, paddedVertically);
-      console.log(highlighted);
+      var paddedHorizontally = padHorizontally(size, highlighted, sourceSize.columns);
+      var paddedVertically = padVertically(size, paddedHorizontally);
+      console.log(paddedVertically);
     });
   // nothing has happened yet - no functions executed, just composed
   // now run them (including unsafe ones)
