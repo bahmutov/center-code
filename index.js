@@ -4,10 +4,6 @@ var R = require('ramda');
 var la = require('lazy-ass');
 var check = require('check-more-types');
 
-function isNumber(x) {
-  return typeof x === 'number';
-}
-
 function getProcess() { return process; }
 
 function terminalSize() {
@@ -84,7 +80,8 @@ function padHorizontally(terminal, text, columns) {
   var lines = text.split('\n');
   var blankColumns = Math.floor((terminal.width - columns) / 2);
   var blankPrefix = blanks(blankColumns);
-  log('blank prefix "%s"', blankPrefix)
+  log('blank prefix "%s" %d columns', blankPrefix, blankPrefix.length);
+
   var padded = lines.map(function (line) {
     return blankPrefix + line;
   });

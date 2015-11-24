@@ -3,6 +3,7 @@ var R = require('ramda');
 var IO = require('./io');
 la(typeof IO === 'function', 'IO should be a function', IO);
 
+/* global describe, it */
 describe('IO', function () {
   var ioGlobal = new IO(function unsafeGlobalAccess() {
     return global;
