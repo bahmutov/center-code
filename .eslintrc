@@ -21,6 +21,5 @@
   "env": {
     "node": true,
     "browser": false
-  },
-  "extends": "eslint:recommended"
+  }
 }

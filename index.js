@@ -3,6 +3,7 @@ var cardinal = require('cardinal');
 var R = require('ramda');
 var la = require('lazy-ass');
 var check = require('check-more-types');
+var Promise = require('bluebird');
 
 function getProcess() { return process; }
 

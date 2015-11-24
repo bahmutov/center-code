@@ -41,12 +41,13 @@
   },
   "homepage": "https://github.com/bahmutov/center-code#readme",
   "dependencies": {
+    "bluebird": "3.0.5",
     "cardinal": "0.5.0",
     "check-more-types": "2.2.0",
     "debug": "2.2.0",
     "get-stdin-promise": "0.1.1",
-    "ramda": "0.17.1",
-    "lazy-ass": "1.1.0"
+    "lazy-ass": "1.1.0",
+    "ramda": "0.17.1"
   },
   "devDependencies": {
     "describe-it": "1.4.0",
