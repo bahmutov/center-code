@@ -22,6 +22,7 @@ the output will have syntax highlighting. The input read from STDIN is not synta
 [![Build status][center-code-ci-image] ][center-code-ci-url]
 [![dependencies][center-code-dependencies-image] ][center-code-dependencies-url]
 [![devdependencies][center-code-devdependencies-image] ][center-code-devdependencies-url]
+[![semantic-release][semantic-image] ][semantic-url]
 
 ### Small print
 
@@ -71,3 +72,5 @@ OTHER DEALINGS IN THE SOFTWARE.
 [center-code-dependencies-url]: https://david-dm.org/bahmutov/center-code
 [center-code-devdependencies-image]: https://david-dm.org/bahmutov/center-code/dev-status.svg
 [center-code-devdependencies-url]: https://david-dm.org/bahmutov/center-code#info=devDependencies
+[semantic-image]: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg
+[semantic-url]: https://github.com/semantic-release/semantic-release
