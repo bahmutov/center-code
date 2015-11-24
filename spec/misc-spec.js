@@ -4,6 +4,29 @@ var describeIt = require('describe-it');
 var join = require('path').join;
 var index = join(__dirname, '..', 'index.js');
 
+describeIt(index, 'startsWithShebang(text)', function (extract) {
+  var isShebang;
+  before(function () {
+    isShebang = extract();
+  });
+
+  it('detects the shebang line', function () {
+    la(isShebang('#!/usr/bin/env node\n\nvar foo = 42;'));
+  });
+
+  it('ignores if no shebang', function () {
+    la(!isShebang('var foo = 42;'));
+  });
+
+  it('ignores if has spaces', function () {
+    la(!isShebang('  #!/usr/bin/env node\n\nvar foo = 42;'));
+  });
+
+  it('ignores if has empty lines', function () {
+    la(!isShebang('\n#!/usr/bin/env node\n\nvar foo = 42;'));
+  });
+});
+
 describeIt(index, 'highlight(filename, text)', function (extract) {
   var highlight;
   before(function () {

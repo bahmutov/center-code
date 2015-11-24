@@ -101,10 +101,20 @@ function textSize(text) {
   };
 }
 
+function startsWithShebang(text) {
+  return /^#!/.test(text);
+}
+
 function highlight(filename, text) {
   la(check.unemptyString(text), 'missing text to highlight');
 
   var highlighted = text;
+
+  if (startsWithShebang(text)) {
+    log('%s starts with shebang, cannot highlight', filename);
+    return highlighted;
+  }
+
   if (isJavaScript(filename)) {
     log('highlighting javascript file', filename);
     highlighted = cardinal.highlight(text);
