@@ -2,6 +2,7 @@
   "name": "center-code",
   "description": "Shows the file's source centered in the terminal",
   "main": "index.js",
+  "version": "0.0.0-semantic-release",
   "scripts": {
     "test": "mocha src/*-spec.js spec/*-spec.js",
     "example": "./bin/center-code.js example/small.js",
