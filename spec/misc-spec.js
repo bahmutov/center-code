@@ -1,5 +1,19 @@
+var la = require('lazy-ass');
+var check = require('check-more-types');
 var describeIt = require('describe-it');
-var index = __dirname + '/../index.js';
+var join = require('path').join;
+var index = join(__dirname, '..', 'index.js');
+
+describeIt(index, 'highlight(filename, text)', function (extract) {
+  var highlight;
+  before(function () {
+    highlight = extract();
+  });
+
+  it('is a function', function () {
+    la(check.fn(highlight));
+  });
+});
 
 describeIt(index, 'widest(lines)', function (extract) {
   var widest;

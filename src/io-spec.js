@@ -1,4 +1,4 @@
-require('lazy-ass');
+var la = require('lazy-ass');
 var R = require('ramda');
 var IO = require('./io');
 la(typeof IO === 'function', 'IO should be a function', IO);

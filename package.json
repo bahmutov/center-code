@@ -40,14 +40,15 @@
   "homepage": "https://github.com/bahmutov/center-code#readme",
   "dependencies": {
     "cardinal": "0.5.0",
+    "check-more-types": "2.2.0",
     "debug": "2.2.0",
     "get-stdin-promise": "0.1.1",
-    "ramda": "0.17.1"
+    "ramda": "0.17.1",
+    "lazy-ass": "1.1.0"
   },
   "devDependencies": {
     "describe-it": "1.4.0",
     "git-issues": "1.2.0",
-    "lazy-ass": "0.6.0",
     "mocha": "2.3.2",
     "modules-used": "1.1.0",
     "pkgfiles": "2.3.0",
