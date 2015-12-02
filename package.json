@@ -18,7 +18,8 @@
     "next-update": "next-update -k true --tldr"
   },
   "bin": {
-    "center": "./bin/center-code.js"
+    "center": "./bin/center-code.js",
+    "c": "./bin/center-code.js"
   },
   "repository": {
     "type": "git",
