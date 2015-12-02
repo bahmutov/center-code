@@ -5,6 +5,15 @@ var la = require('lazy-ass');
 var check = require('check-more-types');
 var Promise = require('bluebird');
 
+function highlightMarkdown(text) {
+  var marked = require('marked');
+  var TerminalRenderer = require('marked-terminal');
+  marked.setOptions({
+    renderer: new TerminalRenderer()
+  });
+  return marked(text);
+}
+
 function getProcess() { return process; }
 
 function terminalSize() {
@@ -25,6 +34,11 @@ function isJavaScript(filename) {
 
 function isJson(filename) {
   return /\.json$/.test(filename);
+}
+
+function isMarkdown(filename) {
+  return /\.md$/.test(filename) ||
+    /\.markdown$/.test(filename);
 }
 
 function getSource(filename) {
@@ -119,6 +133,9 @@ function highlight(filename, text) {
   } else if (isJson(filename)) {
     log('highlighting json file', filename);
     highlighted = cardinal.highlight(text, { json: true });
+  } else if (isMarkdown(filename)) {
+    log('highlighting Markdown file', filename);
+    highlighted = highlightMarkdown(text);
   }
   return highlighted;
 }
