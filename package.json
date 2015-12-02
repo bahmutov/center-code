@@ -68,6 +68,7 @@
     "index.js",
     "src/io.js"
   ],
+  "preferGlobal": true,
   "config": {
     "pre-git": {
       "commit-msg": "validate-commit-msg",
