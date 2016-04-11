@@ -69,7 +69,8 @@
   "files": [
     "bin",
     "index.js",
-    "src/io.js"
+    "src/*.js",
+    "!src/*-spec.js"
   ],
   "preferGlobal": true,
   "config": {
