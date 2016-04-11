@@ -110,7 +110,7 @@ function centerText(options, source) {
       var sourceSize = textSize(source);
       log('source size %d x %d', sourceSize.columns, sourceSize.rows);
 
-      var highlighted = highlight(options.filename, source);
+      var highlighted = utils.highlight(options.filename, source);
 
       var paddedHorizontally = padHorizontally(size, highlighted, sourceSize.columns);
       var paddedVertically = padVertically(size, paddedHorizontally);
