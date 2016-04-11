@@ -6,6 +6,7 @@ var la = require('lazy-ass');
 var check = require('check-more-types');
 var Promise = require('bluebird');
 var utils = require('./src/utils');
+var exists = require('fs').existsSync;
 
 function getProcess() { return process; }
 
@@ -126,6 +127,11 @@ function grabInput(options) {
 function centerCode(options) {
   options = options || {};
   options.filename = options.filename || options.name;
+
+  if (!exists(options.filename)) {
+    console.log('ERROR: cannot find input file', options.filename);
+    process.exit(-1);
+  }
 
   grabInput(options)
     .then(function (source) {
