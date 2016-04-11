@@ -1,9 +1,11 @@
+'use strict';
+
 var log = require('debug')('center');
-var cardinal = require('cardinal');
 var R = require('ramda');
 var la = require('lazy-ass');
 var check = require('check-more-types');
 var Promise = require('bluebird');
+var utils = require('./src/utils');
 
 function highlightMarkdown(text) {
   var marked = require('marked');
@@ -26,19 +28,6 @@ function terminalSize() {
         height: outputStream.rows
       };
     });
-}
-
-function isJavaScript(filename) {
-  return /\.js$/.test(filename);
-}
-
-function isJson(filename) {
-  return /\.json$/.test(filename);
-}
-
-function isMarkdown(filename) {
-  return /\.md$/.test(filename) ||
-    /\.markdown$/.test(filename);
 }
 
 function getSource(filename) {
@@ -111,33 +100,6 @@ function textSize(text) {
     columns: columns,
     rows: lines.length
   };
-}
-
-function startsWithShebang(text) {
-  return /^#!/.test(text);
-}
-
-function highlight(filename, text) {
-  la(check.unemptyString(text), 'missing text to highlight');
-
-  var highlighted = text;
-
-  if (startsWithShebang(text)) {
-    log('%s starts with shebang, cannot highlight', filename);
-    return highlighted;
-  }
-
-  if (isJavaScript(filename)) {
-    log('highlighting javascript file', filename);
-    highlighted = cardinal.highlight(text);
-  } else if (isJson(filename)) {
-    log('highlighting json file', filename);
-    highlighted = cardinal.highlight(text, { json: true });
-  } else if (isMarkdown(filename)) {
-    log('highlighting Markdown file', filename);
-    highlighted = highlightMarkdown(text);
-  }
-  return highlighted;
 }
 
 function centerText(options, source) {

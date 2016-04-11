@@ -4,7 +4,9 @@
   "main": "index.js",
   "version": "0.0.0-semantic-release",
   "scripts": {
-    "test": "mocha src/*-spec.js spec/*-spec.js",
+    "test": "npm run unit",
+    "unit": "mocha src/*-spec.js",
+    "pretest": "npm run lint",
     "lint": "eslint index.js bin/*.js src/*.js",
     "example": "./bin/center-code.js example/small.js",
     "shebang": "./bin/center-code.js example/small-with-shebang.js",
