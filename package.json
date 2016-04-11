@@ -46,26 +46,26 @@
   },
   "homepage": "https://github.com/bahmutov/center-code#readme",
   "dependencies": {
-    "bluebird": "3.0.5",
-    "cardinal": "0.6.0",
-    "check-more-types": "2.2.0",
+    "bluebird": "3.3.4",
+    "cardinal": "0.7.1",
+    "check-more-types": "2.20.2",
     "debug": "2.2.0",
     "get-stdin-promise": "0.1.1",
-    "lazy-ass": "1.1.0",
+    "lazy-ass": "1.4.0",
     "marked": "^0.3.5",
     "marked-terminal": "^1.6.1",
-    "ramda": "0.18.0"
+    "ramda": "0.21.0"
   },
   "devDependencies": {
     "describe-it": "1.7.0",
-    "eslint": "1.10.1",
+    "eslint": "2.7.0",
     "git-issues": "1.2.0",
-    "mocha": "2.3.4",
+    "mocha": "2.4.5",
     "modules-used": "1.2.0",
-    "next-update": "0.9.5",
+    "next-update": "1.2.2",
     "pkgfiles": "2.3.0",
-    "pre-git": "1.3.1",
-    "semantic-release": "6.0.3"
+    "pre-git": "3.8.3",
+    "semantic-release": "6.2.1"
   },
   "files": [
     "bin",
@@ -76,7 +76,7 @@
   "preferGlobal": true,
   "config": {
     "pre-git": {
-      "commit-msg": "validate-commit-msg",
+      "commit-msg": "simple",
       "pre-commit": [
         "npm run lint",
         "npm test",
