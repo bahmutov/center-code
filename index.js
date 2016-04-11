@@ -7,15 +7,6 @@ var check = require('check-more-types');
 var Promise = require('bluebird');
 var utils = require('./src/utils');
 
-function highlightMarkdown(text) {
-  var marked = require('marked');
-  var TerminalRenderer = require('marked-terminal');
-  marked.setOptions({
-    renderer: new TerminalRenderer()
-  });
-  return marked(text);
-}
-
 function getProcess() { return process; }
 
 function terminalSize() {

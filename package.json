@@ -9,6 +9,7 @@
     "pretest": "npm run lint",
     "lint": "eslint index.js bin/*.js src/*.js",
     "example": "./bin/center-code.js example/small.js",
+    "example-md": "./bin/center-code.js README.md",
     "shebang": "./bin/center-code.js example/small-with-shebang.js",
     "cat": "cat example/small.js | node bin/center-code.js",
     "modules-used": "modules-used > modules-used.md",

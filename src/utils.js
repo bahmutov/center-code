@@ -4,6 +4,15 @@ var log = require('debug')('center');
 var check = require('check-more-types');
 var la = require('lazy-ass');
 var cardinal = require('cardinal');
+var marked = require('marked');
+var TerminalRenderer = require('marked-terminal');
+
+function highlightMarkdown(text) {
+  marked.setOptions({
+    renderer: new TerminalRenderer()
+  });
+  return marked(text);
+}
 
 function isJavaScript(filename) {
   return /\.js$/.test(filename);
